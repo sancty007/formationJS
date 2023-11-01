@@ -1,0 +1,75 @@
+Absolument, comprendre les appels HTTP avec `fetch()` est crucial pour interagir avec des API et récupérer des données à partir de serveurs distants. Voici un résumé des concepts clés et quelques exercices pour vous aider à pratiquer :
+
+### Résumé de cours :
+
+#### 1. Fetch API :
+
+- **`fetch()` :** C'est une fonction native de JavaScript permettant de faire des requêtes réseau et d'interagir avec des serveurs distants.
+  
+- **Promesses :** `fetch()` retourne une promesse, ce qui permet d'utiliser les méthodes `.then()` et `.catch()` pour gérer les réponses réussies ou les erreurs.
+
+- **Requêtes HTTP :** Vous pouvez effectuer des requêtes GET, POST, PUT, DELETE, etc., en spécifiant la méthode appropriée.
+
+- **Envoi et réception de données :** Vous pouvez envoyer des données (payload) avec votre requête, généralement au format JSON, et traiter les données reçues dans la réponse.
+
+#### 2. Exercices pratiques :
+
+##### Exercice 1 : Requête GET
+
+Effectuez une requête GET vers une API et affichez les données dans la console.
+
+```javascript
+fetch('https://exemple.com/api/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Erreur :', error));
+```
+
+##### Exercice 2 : Envoi de données avec une requête POST
+
+Envoyez des données vers une API en utilisant une requête POST.
+
+```javascript
+const postData = {
+  title: 'Nouvel élément',
+  body: 'Contenu de l\'élément'
+};
+
+fetch('https://exemple.com/api/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(postData)
+})
+  .then(response => response.json())
+  .then(data => console.log('Données envoyées :', data))
+  .catch(error => console.error('Erreur :', error));
+```
+
+##### Exercice 3 : Manipulation avancée de la réponse
+
+Traitez et affichez les données reçues de manière plus détaillée.
+
+```javascript
+fetch('https://exemple.com/api/data')
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    throw new Error('Erreur réseau.');
+  })
+  .then(data => {
+    // Manipulation des données
+    data.forEach(item => {
+      // Traitez chaque élément ici
+      console.log(item.id, item.title);
+    });
+  })
+  .catch(error => console.error('Erreur :', error));
+```
+
+### Remarque :
+N'oubliez pas de remplacer 'https://exemple.com/api/data' par l'URL de l'API réelle que vous souhaitez utiliser pour ces exercices.
+
+Ces exercices devraient vous aider à vous familiariser avec l'utilisation de `fetch()` pour effectuer des appels HTTP, envoyer et recevoir des données depuis des serveurs distants. N'hésitez pas à pratiquer davantage et à explorer différentes API pour consolider vos connaissances.
